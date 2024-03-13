@@ -17,8 +17,8 @@ html, body {
   border-bottom: solid rgb(173, 173, 173);
 }
 
-.navbar-main-section {
-}
+/* .navbar-main-section {
+} */
 
 .navbar-sub-section {
   display: flex;

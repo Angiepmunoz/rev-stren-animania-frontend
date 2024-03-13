@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react"
+import Anime from "./Anime";
 import axios from "axios"
 
 
@@ -29,12 +30,7 @@ export default function Animes() {
           </thead>
           <tbody>
             {animes.map((anime, i)=> {
-               return (
-                <tr key={i}>
-                  <td>{anime.name}</td>
-                  <td>{anime.description}</td>
-                </tr>
-               )
+               return <Anime key={i} anime={anime}/>
             })}
           </tbody>
         </table>
