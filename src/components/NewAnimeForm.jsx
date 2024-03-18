@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
@@ -8,28 +9,27 @@ export default function NewAnimeForm() {
     description: "",
   });
 
+  const navigate = useNavigate()
   const API = import.meta.env.VITE_API;
 
   function handleNameChange(event) {
-    // console.log(event.target.value);
     setAnime({ ...anime, name: event.target.value });
-    // console.log(anime.name)
   }
   function handleDescriptionChange(event) {
-    // console.log(event.target.value);
     setAnime({ ...anime, description: event.target.value });
-    // console.log(anime.description)
   }
   function handleSubmit(e) {
     console.log("IN THE HANDLE SUBMIT")
     e.preventDefault(); // why does it continue to refresh
-    axios.post(`${API}/animes`, anime).then(response => {
-        console.log(response)
-        setAnime({
-            name: "",
-            description: ""
-        })
-    })
+    axios.post(`${API}/animes`, anime).then(({data}) => {
+        // console.log(response)
+        // setAnime({
+        //     name: "",
+        //     description: ""
+        // })
+        navigate(`/animes/${data.payload.id}`)
+
+    }).catch(e=> console.warn(e))
   }
   return (
     <form className="new-anime-form" onSubmit={handleSubmit}>
@@ -46,7 +46,7 @@ export default function NewAnimeForm() {
       </label>
       <label>
         Please enter the description of your anime:
-        <input
+        <textarea
           type="text"
           name="description"
           id="description"

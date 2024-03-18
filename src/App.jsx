@@ -2,12 +2,15 @@ import Animes from "./components/Animes";
 import Navbar from "./components/Nav";
 import Footer from "./components/Footer";
 import NewAnimeForm from "./components/NewAnimeForm";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, redirect } from "react-router-dom";
+import AnimeDetails from "./components/AnimeDetails";
+import EditAnimeForm from "./components/EditAnimeForm";
 import "./App.css";
 
 const API = import.meta.env.VITE_API;
 
 function App() {
+
   return (
     <div className="App">
       <Router>
@@ -16,8 +19,8 @@ function App() {
           <Routes>
             <Route path="/animes" element={<Animes />} />
             <Route path="/animes/new" element={<NewAnimeForm/>} />
-            {/* <Route path="/animes/:id" element={} /> */}
-            {/* <Route path="/animes/:id/edit" element={} /> */}
+            <Route path="/animes/:id" element={<AnimeDetails/>} />
+            <Route path="/animes/:id/edit" element={<EditAnimeForm/>} />
           </Routes>
         </section>
         <Footer />
